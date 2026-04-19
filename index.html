@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Кафе Чихо — AI-приложение</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ========== PHONE FRAME WRAPPER ========== -->
+<div class="device-frame">
+  <div class="device-notch"></div>
+  <div class="device-screen" id="appRoot">
+
+    <!-- ===== SCREEN: ONBOARDING ===== -->
+    <div class="screen active" id="screen-onboarding">
+      <div class="onboarding-bg">
+        <div class="onboarding-blobs">
+          <div class="blob blob-1"></div>
+          <div class="blob blob-2"></div>
+          <div class="blob blob-3"></div>
+        </div>
+      </div>
+      <div class="onboarding-content">
+        <div class="logo-wrap">
+          <svg class="app-logo" width="64" height="64" viewBox="0 0 64 64" fill="none" aria-label="Кафе Чихо">
+            <circle cx="32" cy="32" r="30" fill="#C84B31" />
+            <path d="M20 38 Q22 26 32 24 Q42 26 44 38" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <circle cx="32" cy="21" r="3" fill="#FFD580"/>
+            <path d="M25 38 Q28 44 32 44 Q36 44 39 38" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <!-- neural nodes -->
+            <circle cx="14" cy="32" r="2" fill="#FFD580" opacity="0.8"/>
+            <circle cx="50" cy="32" r="2" fill="#FFD580" opacity="0.8"/>
+            <circle cx="20" cy="20" r="1.5" fill="#FFD580" opacity="0.6"/>
+            <circle cx="44" cy="20" r="1.5" fill="#FFD580" opacity="0.6"/>
+            <line x1="14" y1="32" x2="20" y2="38" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+            <line x1="50" y1="32" x2="44" y2="38" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+          </svg>
+          <div class="logo-text">
+            <span class="logo-main">Чихо</span>
+            <span class="logo-sub">× ИИ</span>
+          </div>
+        </div>
+
+        <h1 class="onboarding-title">Кафе, где<br><em>нейросеть</em><br>знает тебя</h1>
+        <p class="onboarding-desc">AI-шеф подбирает блюда, проводит гастро-квесты и раскрывает секреты кулинарии на основе нейронных сетей</p>
+
+        <div class="onboarding-features">
+          <div class="feat-chip">
+            <span class="feat-icon">🤖</span>
+            <span>AI-шеф советует</span>
+          </div>
+          <div class="feat-chip">
+            <span class="feat-icon">🧬</span>
+            <span>Нейро-квест</span>
+          </div>
+          <div class="feat-chip">
+            <span class="feat-icon">✨</span>
+            <span>Вкус по настроению</span>
+          </div>
+        </div>
+
+        <button class="btn-primary full-width" onclick="goTo('screen-home')">Начать</button>
+        <p class="onboarding-location">📍 Кострома · ул. Советская, 10</p>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: HOME ===== -->
+    <div class="screen" id="screen-home">
+      <div class="top-bar">
+        <div class="top-bar-left">
+          <svg class="logo-sm" width="28" height="28" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="30" fill="#C84B31" />
+            <path d="M20 38 Q22 26 32 24 Q42 26 44 38" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <circle cx="32" cy="21" r="3" fill="#FFD580"/>
+          </svg>
+          <span class="top-bar-title">Кафе Чихо</span>
+        </div>
+        <div class="top-bar-right">
+          <button class="icon-btn notif-btn" onclick="goTo('screen-quest')">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge">2</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="screen-body scroll-y">
+        <!-- Greeting -->
+        <div class="home-greeting">
+          <p class="greeting-label">Добро пожаловать 👋</p>
+          <h2 class="greeting-name">Узнай вкус ИИ</h2>
+        </div>
+
+        <!-- AI Banner -->
+        <div class="ai-banner" onclick="goTo('screen-aichef')">
+          <div class="ai-banner-text">
+            <p class="banner-label">🤖 AI-шеф онлайн</p>
+            <h3 class="banner-title">Что тебя<br>порадует сегодня?</h3>
+            <span class="banner-cta">Спросить шефа →</span>
+          </div>
+          <div class="ai-banner-visual">
+            <div class="neural-net">
+              <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+                <!-- layer 1 -->
+                <circle cx="15" cy="25" r="5" fill="#FFD580" opacity="0.9"/>
+                <circle cx="15" cy="45" r="5" fill="#FFD580" opacity="0.9"/>
+                <circle cx="15" cy="65" r="5" fill="#FFD580" opacity="0.9"/>
+                <!-- layer 2 -->
+                <circle cx="45" cy="20" r="5" fill="#fff" opacity="0.85"/>
+                <circle cx="45" cy="40" r="5" fill="#fff" opacity="0.85"/>
+                <circle cx="45" cy="60" r="5" fill="#fff" opacity="0.85"/>
+                <!-- layer 3 -->
+                <circle cx="75" cy="35" r="6" fill="#C84B31" opacity="1" stroke="#fff" stroke-width="2"/>
+                <circle cx="75" cy="60" r="6" fill="#C84B31" opacity="1" stroke="#fff" stroke-width="2"/>
+                <!-- connections -->
+                <line x1="20" y1="25" x2="40" y2="20" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+                <line x1="20" y1="25" x2="40" y2="40" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+                <line x1="20" y1="45" x2="40" y2="20" stroke="#FFD580" stroke-width="1" opacity="0.4"/>
+                <line x1="20" y1="45" x2="40" y2="40" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+                <line x1="20" y1="45" x2="40" y2="60" stroke="#FFD580" stroke-width="1" opacity="0.4"/>
+                <line x1="20" y1="65" x2="40" y2="40" stroke="#FFD580" stroke-width="1" opacity="0.4"/>
+                <line x1="20" y1="65" x2="40" y2="60" stroke="#FFD580" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="20" x2="69" y2="35" stroke="#fff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="40" x2="69" y2="35" stroke="#fff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="40" x2="69" y2="60" stroke="#fff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="60" x2="69" y2="60" stroke="#fff" stroke-width="1" opacity="0.5"/>
+                <line x1="50" y1="60" x2="69" y2="35" stroke="#fff" stroke-width="1" opacity="0.3"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="section-title">Разделы</div>
+        <div class="quick-grid quick-grid-5">
+          <button class="quick-card" onclick="goTo('screen-menu')">
+            <span class="quick-icon">🍜</span>
+            <span>Меню</span>
+          </button>
+          <button class="quick-card" onclick="goTo('screen-aichef')">
+            <span class="quick-icon">🤖</span>
+            <span>AI-шеф</span>
+          </button>
+          <button class="quick-card" onclick="goTo('screen-quest')">
+            <span class="quick-icon">🧬</span>
+            <span>Нейро-квест</span>
+          </button>
+          <button class="quick-card" onclick="goTo('screen-mood')">
+            <span class="quick-icon">🎭</span>
+            <span>Настроение</span>
+          </button>
+          <button class="quick-card quick-card-photo" onclick="goTo('screen-aiphoto')">
+            <span class="quick-icon">📸</span>
+            <span>AI-фото</span>
+          </button>
+        </div>
+
+        <!-- AI Fact of the day -->
+        <div class="section-title">Факт дня от ИИ</div>
+        <div class="fact-card">
+          <div class="fact-icon">🧠</div>
+          <div class="fact-body">
+            <p class="fact-text">«Нейросети обучались на 400 000+ рецептах, чтобы предсказывать сочетания вкусов с точностью 89%»</p>
+            <span class="fact-tag">#нейросети #еда</span>
+          </div>
+        </div>
+
+        <!-- Promo event -->
+        <div class="section-title">Акция</div>
+        <div class="promo-card" onclick="goTo('screen-quest')">
+          <div class="promo-badge">NEW</div>
+          <p class="promo-label">Нейро-квест «Угадай рецепт ИИ»</p>
+          <p class="promo-desc">Пройди 3 уровня — получи бесплатный десерт</p>
+          <span class="promo-arrow">→</span>
+        </div>
+
+        <div style="height: 80px;"></div>
+      </div>
+
+      <nav class="bottom-nav">
+        <button class="nav-item active" onclick="goTo('screen-home')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item" onclick="goTo('screen-menu')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span>Меню</span>
+        </button>
+        <button class="nav-item" onclick="goTo('screen-aichef')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <span>AI-шеф</span>
+        </button>
+        <button class="nav-item" onclick="goTo('screen-quest')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Квест</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ===== SCREEN: AI CHEF ===== -->
+    <div class="screen" id="screen-aichef">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">AI-шеф Чихо</span>
+        <div style="width:34px"></div>
+      </div>
+
+      <div class="screen-body scroll-y">
+        <div class="aichef-header">
+          <div class="chef-avatar">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+              <circle cx="28" cy="28" r="26" fill="#C84B31"/>
+              <circle cx="28" cy="22" r="10" fill="#FFD580"/>
+              <!-- chef hat hint -->
+              <path d="M16 22 Q16 10 28 10 Q40 10 40 22" fill="#fff" opacity="0.15"/>
+              <circle cx="28" cy="22" r="6" fill="#C84B31"/>
+              <circle cx="25" cy="21" r="1.5" fill="#fff"/>
+              <circle cx="31" cy="21" r="1.5" fill="#fff"/>
+              <path d="M25 25 Q28 27 31 25" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            </svg>
+            <div class="chef-status-dot"></div>
+          </div>
+          <div class="chef-intro">
+            <strong>AI-шеф Макс</strong>
+            <span>Онлайн · готов советовать</span>
+          </div>
+        </div>
+
+        <!-- Chat area -->
+        <div class="chat-area" id="chatArea">
+          <div class="chat-msg bot">
+            <div class="msg-bubble">
+              Привет! Я AI-шеф Макс 🤖 Обучен на 50 000+ рецептах. Скажи мне своё настроение или что тебе хочется — и я подберу идеальное блюдо из нашего меню!
+            </div>
+            <span class="msg-time">сейчас</span>
+          </div>
+        </div>
+
+        <!-- Quick reply chips -->
+        <div class="quick-replies" id="quickReplies">
+          <button class="qr-chip" onclick="sendQuickReply(this, 'Хочу что-то острое 🌶️')">🌶️ Острое</button>
+          <button class="qr-chip" onclick="sendQuickReply(this, 'Хочу лёгкое и полезное 🥗')">🥗 Лёгкое</button>
+          <button class="qr-chip" onclick="sendQuickReply(this, 'Хочу сладкое 🍰')">🍰 Сладкое</button>
+          <button class="qr-chip" onclick="sendQuickReply(this, 'Удиви меня! ✨')">✨ Удиви</button>
+          <button class="qr-chip" onclick="sendQuickReply(this, 'Хочу чай и что-то к нему 🍵')">🍵 Чай</button>
+        </div>
+
+        <!-- Chat input -->
+        <div class="chat-input-wrap">
+          <input type="text" class="chat-input" id="chatInput" placeholder="Напиши AI-шефу..." />
+          <button class="send-btn" onclick="sendChat()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <div style="height: 16px;"></div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: MENU ===== -->
+    <div class="screen" id="screen-menu">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">Меню с AI-описаниями</span>
+        <div style="width:34px"></div>
+      </div>
+
+      <div class="screen-body scroll-y">
+        <div class="menu-intro">
+          <p>🤖 Нейросеть написала описание каждого блюда на основе анализа вкусовых сочетаний</p>
+        </div>
+
+        <div class="menu-cats-wrap">
+          <div class="menu-cats" id="menuCats">
+            <button class="cat-btn active" onclick="filterMenu(this,'all')">Всё</button>
+            <button class="cat-btn" onclick="filterMenu(this,'soup')">Супы</button>
+            <button class="cat-btn" onclick="filterMenu(this,'rice')">Рис</button>
+            <button class="cat-btn" onclick="filterMenu(this,'noodle')">Лапша</button>
+            <button class="cat-btn" onclick="filterMenu(this,'starter')">Закуски</button>
+            <button class="cat-btn" onclick="filterMenu(this,'wontons')">Вонтоны</button>
+            <button class="cat-btn" onclick="filterMenu(this,'dessert')">Десерты</button>
+            <button class="cat-btn" onclick="filterMenu(this,'drink')">Напитки</button>
+          </div>
+        </div>
+
+        <div class="menu-list" id="menuList">
+          <!-- items injected by JS -->
+        </div>
+        <div style="height: 100px;"></div>
+      </div>
+
+      <!-- Плавающая кнопка корзины -->
+      <div class="cart-fab" id="cartFab" onclick="goTo('screen-order')" style="display:none">
+        <span class="cart-fab-icon">🛒</span>
+        <span class="cart-fab-label">Собрать заказ</span>
+        <span class="cart-fab-count" id="cartCount">0</span>
+      </div>
+
+      <nav class="bottom-nav">
+        <button class="nav-item" onclick="goTo('screen-home')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item active" onclick="goTo('screen-menu')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+          <span>Меню</span>
+        </button>
+        <button class="nav-item" onclick="goTo('screen-aichef')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <span>AI-шеф</span>
+        </button>
+        <button class="nav-item" onclick="goTo('screen-quest')">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Квест</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- ===== SCREEN: MOOD ===== -->
+    <div class="screen" id="screen-mood">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">Вкус по настроению</span>
+        <div style="width:34px"></div>
+      </div>
+
+      <div class="screen-body scroll-y">
+        <p class="mood-intro">AI анализирует твоё настроение и подбирает блюдо, которое улучшит его химически и вкусово</p>
+
+        <div class="mood-grid" id="moodGrid">
+          <button class="mood-card" data-mood="happy" onclick="selectMood(this)">
+            <span class="mood-emoji">😊</span>
+            <span>Радость</span>
+          </button>
+          <button class="mood-card" data-mood="tired" onclick="selectMood(this)">
+            <span class="mood-emoji">😴</span>
+            <span>Устал</span>
+          </button>
+          <button class="mood-card" data-mood="stressed" onclick="selectMood(this)">
+            <span class="mood-emoji">😤</span>
+            <span>Стресс</span>
+          </button>
+          <button class="mood-card" data-mood="creative" onclick="selectMood(this)">
+            <span class="mood-emoji">🎨</span>
+            <span>Творчество</span>
+          </button>
+          <button class="mood-card" data-mood="romantic" onclick="selectMood(this)">
+            <span class="mood-emoji">💕</span>
+            <span>Романтика</span>
+          </button>
+          <button class="mood-card" data-mood="adventure" onclick="selectMood(this)">
+            <span class="mood-emoji">🚀</span>
+            <span>Авантюра</span>
+          </button>
+        </div>
+
+        <!-- Result -->
+        <div class="mood-result hidden" id="moodResult">
+          <div class="result-card">
+            <div class="result-ai-label">🧠 AI-рекомендация</div>
+            <h3 class="result-dish" id="moodDish"></h3>
+            <p class="result-reason" id="moodReason"></p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+              <button class="btn-primary" id="moodRerollBtn">🔄 Другой вариант</button>
+              <button class="btn-secondary" onclick="goTo('screen-menu')">Смотреть в меню</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 40px;"></div>
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: NEURO-QUEST ===== -->
+    <div class="screen" id="screen-quest">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">Нейро-квест</span>
+        <div style="width:34px"></div>
+      </div>
+
+      <div class="screen-body scroll-y">
+        <div class="quest-hero">
+          <div class="quest-hero-icon">🧬</div>
+          <h2 class="quest-title">Угадай рецепт ИИ</h2>
+          <p class="quest-desc">AI придумал блюдо по нейросетевому алгоритму. Угадай 3 ингредиента из 4 — получи бесплатный десерт!</p>
+          <div class="quest-progress-row">
+            <span>Уровень <strong id="questLevel">1</strong> из 3</span>
+            <div class="quest-progress-bar"><div class="quest-progress-fill" id="questFill" style="width:0%"></div></div>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div class="quest-card" id="questCard">
+          <div class="quest-q-label">AI придумал блюдо:</div>
+          <div class="quest-dish-name" id="questDishName"></div>
+          <div class="quest-q-label" style="margin-top:12px;">Выбери ЛИШНИЙ ингредиент:</div>
+          <div class="quest-options" id="questOptions"></div>
+        </div>
+
+        <!-- Result message -->
+        <div class="quest-result hidden" id="questResult">
+          <div class="result-card">
+            <div class="result-ai-label" id="questResultIcon"></div>
+            <p id="questResultText"></p>
+            <button class="btn-primary" id="questNextBtn" onclick="nextQuestLevel()">Следующий уровень</button>
+          </div>
+        </div>
+
+        <!-- Final reward -->
+        <div class="quest-reward hidden" id="questReward"></div>
+
+        <div style="height:40px;"></div>
+      </div>
+    </div>
+
+
+    <!-- ===== SCREEN: ORDER (итоговый заказ для официанта) ===== -->
+    <div class="screen" id="screen-order">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">Мой заказ</span>
+        <button class="icon-btn" onclick="clearOrder()" title="Очистить">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+
+      <div class="screen-body scroll-y" id="orderBody">
+        <!-- rendered by JS -->
+      </div>
+    </div>
+
+    <!-- ===== SCREEN: AI-ФОТО ===== -->
+    <div class="screen" id="screen-aiphoto">
+      <div class="top-bar with-back">
+        <button class="icon-btn" onclick="goBack()">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <span class="top-bar-title">AI-фото Чихо</span>
+        <div style="width:34px"></div>
+      </div>
+
+      <div class="screen-body scroll-y">
+
+        <!-- Step 1: Upload -->
+        <div id="aiphoto-step-upload">
+          <div class="aiphoto-hero">
+            <div class="aiphoto-hero-icon">📸</div>
+            <h2 class="aiphoto-title">Твоё фото<br><em>в стиле Чихо</em></h2>
+            <p class="aiphoto-desc">Встань в фирменные фоны кафе Чихо — Шанхай, водный город или Великая стена. Одна генерация в сессию. 📸</p>
+          </div>
+
+          <div class="aiphoto-upload-zone" id="uploadZone" onclick="document.getElementById('photoFileInput').click()">
+            <div class="upload-icon">🖼️</div>
+            <p class="upload-hint">Нажми, чтобы выбрать фото</p>
+            <p class="upload-sub">JPG / PNG · до 10 МБ</p>
+            <input type="file" id="photoFileInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)" />
+          </div>
+
+          <div class="aiphoto-preview hidden" id="photoPreviewWrap">
+            <img id="photoPreview" src="" alt="Ваше фото" class="aiphoto-preview-img" />
+            <button class="upload-change-btn" onclick="document.getElementById('photoFileInput').click()">Сменить фото</button>
+          </div>
+
+          <!-- Согласие -->
+          <div class="aiphoto-consent" id="consentBlock" style="display:none">
+            <label class="consent-label">
+              <input type="checkbox" id="consentCheck" onchange="updateConsentBtn()" />
+              <span>Я согласен(а) на обработку фото AI в рамках сервиса Чихо. Данные не сохраняются и используются только для генерации изображений в этой сессии.</span>
+            </label>
+            <div class="consent-legal">
+              🔒 Политика: ваше фото обрабатывается локально в браузере. Лица распознаются только для стилизации. Изображения автоматически удаляются по закрытии вкладки.
+            </div>
+            <button class="btn-primary full-width" id="consentNextBtn" onclick="goToStyleSelect()" disabled style="opacity:0.5;margin-top:12px">Выбрать стиль →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Style select -->
+        <div id="aiphoto-step-styles" style="display:none">
+          <p class="style-select-label">Выбери фирменный фон Чихо:</p>
+          <div class="styles-grid styles-grid-3">
+            <button class="style-card" data-style="shanghai" onclick="selectStyle(this)">
+              <span class="style-emoji">🌃</span>
+              <strong>Шанхай × Чихо</strong>
+              <span class="style-sub">Ночные неоны и башня</span>
+            </button>
+            <button class="style-card" data-style="watertown" onclick="selectStyle(this)">
+              <span class="style-emoji">🏮</span>
+              <strong>Водный город</strong>
+              <span class="style-sub">Каналы и фонари</span>
+            </button>
+            <button class="style-card" data-style="greatwall" onclick="selectStyle(this)">
+              <span class="style-emoji">🌅</span>
+              <strong>Великая стена</strong>
+              <span class="style-sub">Закат и горы</span>
+            </button>
+          </div>
+          <button class="btn-primary full-width" id="generateBtn" onclick="startGeneration()" disabled style="opacity:0.5;margin-top:16px">✨ Создать AI-фото</button>
+        </div>
+
+        <!-- Step 3: Generating -->
+        <div id="aiphoto-step-generating" style="display:none">
+          <div class="generating-wrap">
+            <div class="generating-anim">
+              <div class="gen-ring gen-ring-1"></div>
+              <div class="gen-ring gen-ring-2"></div>
+              <div class="gen-ring gen-ring-3"></div>
+              <span class="gen-icon">🤖</span>
+            </div>
+            <h3 class="gen-title">AI рисует...</h3>
+            <p class="gen-desc" id="genDesc">Загружаем AI-модель...</p>
+            <div class="gen-progress-bar"><div class="gen-progress-fill" id="genFill"></div></div>
+            <p class="gen-desc-note" id="genNote">При первом запуске загружается AI (~40 МБ) — подожди немного</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Result -->
+        <div id="aiphoto-step-result" style="display:none">
+          <div class="result-header">
+            <span class="result-style-label" id="resultStyleLabel"></span>
+            <h3 class="result-title">Готово! ✨</h3>
+          </div>
+
+          <div class="aiphoto-result-img-wrap">
+            <div class="aiphoto-result-img" id="resultImgArea">
+              <!-- canvas-style result -->
+            </div>
+            <div class="chiho-watermark">Кафе Чихо × AI</div>
+          </div>
+
+          <div class="share-section">
+            <p class="share-title">Поделись — получи бонус!</p>
+            <p class="share-desc">Опубликуй фото с #КафеЧихо и получи промокод на скидку</p>
+            <div class="share-btns">
+              <button class="share-btn share-vk" onclick="sharePhoto('vk')">📘 Наш ВКонтакте</button>
+              <button class="share-btn share-tg" onclick="sharePhoto('tg')">✈️ Наш Telegram</button>
+              <button class="share-btn share-save" onclick="savePhoto()">💾 Сохранить</button>
+            </div>
+            <div class="share-bonus hidden" id="shareBonus">
+              <div class="bonus-code-wrap">
+                <span class="bonus-label">🎁 Бонус за публикацию:</span>
+                <span class="bonus-code" id="shareBonusCode"></span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:16px;">
+            <button class="btn-secondary" style="flex:1" onclick="backToStyles()">← Другой стиль</button>
+            <button class="btn-primary" style="flex:1" onclick="goTo('screen-menu')">Смотреть меню</button>
+          </div>
+          <div style="height:24px"></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /device-screen -->
+  <div class="device-home-bar"></div>
+</div><!-- /device-frame -->
+
+<script src="app.js"></script>
+</body>
+</html>
